@@ -22,7 +22,7 @@ const ManageUser = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "https://gym5api-production.up.railway.app//api/user",
+          "https://gym5api-production.up.railway.app/api/user",
           {
             headers: {
               Authorization: `Bearer ${token}`,
