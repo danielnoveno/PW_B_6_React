@@ -1,0 +1,253 @@
+/* General Container */
+.profile-container {
+  padding: 24px;
+}
+
+/* Profile Card */
+.profile-main-card {
+  background-color: #d6e4fc !important;
+  border: none !important;
+  border-radius: 8px !important;
+  position: relative;
+  margin-top: 60px;
+  padding: 20px;
+}
+
+/* Profile Picture Styles */
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50px;
+  top: -50px;
+  border: 4px solid white;
+  object-fit: cover;
+}
+
+.profile-picture-edit {
+  position: absolute;
+  right: -15px;
+  top: -45px;
+  background: #3c64ef;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.profile-picture-edit:hover {
+  background: #2850d9;
+}
+
+.upload-photo-btn {
+  position: absolute;
+  right: -15px;
+  top: -45px;
+  background: #3c64ef;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.upload-photo-btn:hover {
+  background: #2850d9;
+}
+
+.upload-icon {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+}
+
+/* Profile Information */
+.profile-info {
+  color: #3c64ef;
+  padding: 20px 0;
+}
+
+.profile-title {
+  color: #3c64ef;
+  margin-bottom: 19px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.profile-details {
+  color: #3c64ef;
+}
+
+.info-label {
+  font-weight: 500;
+}
+
+/* Form Controls */
+.form-control {
+  border-radius: 8px;
+  border-color: #3c64ef !important;
+  padding: 0.5rem 1rem;
+}
+
+.form-control:focus {
+  border-color: #3c64ef !important;
+  box-shadow: 0 0 0 0.2rem rgba(60, 100, 239, 0.25) !important;
+}
+
+/* Edit Controls */
+.edit-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+}
+
+.edit-link {
+  color: #3c64ef;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.edit-link:hover {
+  color: #2850d9;
+}
+
+/* Settings Section */
+.settings-title {
+  color: #3c64ef;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.settings-card {
+  background-color: #f0f4ff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  margin-bottom: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.settings-card:hover {
+  background-color: #e6edff !important;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px !important;
+}
+
+.settings-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+}
+
+.language-icon {
+  height: 25px;
+}
+
+.settings-link {
+  color: #3c64ef;
+  text-decoration: none;
+  padding: 4px 0;
+  flex-grow: 1;
+}
+
+.settings-link:hover {
+  color: #2850d9;
+}
+
+.language-value {
+  color: #3c64ef;
+}
+
+/* Delete Account */
+.delete-account {
+  background-color: #ffa9a9 !important;
+}
+
+.delete-account:hover {
+  background-color: #ff9595 !important;
+}
+
+.delete-account .settings-link {
+  color: #ff0000;
+}
+
+/* Action Buttons */
+.action-buttons {
+  margin-top: 16px;
+}
+
+.action-buttons .btn {
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.action-buttons .btn-primary {
+  background-color: #3c64ef;
+  border-color: #3c64ef;
+}
+
+.action-buttons .btn-primary:hover {
+  background-color: #2850d9;
+  border-color: #2850d9;
+}
+
+.action-buttons .btn-light {
+  border: 1px solid #dee2e6;
+  color: #6c757d;
+  background-color: white;
+}
+
+.action-buttons .btn-light:hover {
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 16px;
+  }
+
+  .profile-picture {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .profile-info {
+    padding: 10px 0;
+  }
+
+  .settings-item {
+    padding: 8px 16px !important;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .action-buttons .btn {
+    width: 100%;
+  }
+
+  .profile-main-card {
+    margin-top: 80px;
+  }
+}

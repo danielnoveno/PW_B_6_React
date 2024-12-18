@@ -1,0 +1,150 @@
+.wrapper {
+  display: flex;
+}
+
+.main {
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  transition: all 0.35s ease-in-out;
+}
+
+#sidebar {
+  margin: 10px;
+  width: 70px;
+  min-width: 70px;
+  z-index: 1000;
+  transition: all 0.1s ease-in-out;
+  background-color: white;
+  border-radius: 16px;
+  border: 2px #3c64ef solid;
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar.expand {
+  width: 260px;
+  min-width: 260px;
+}
+
+.toggle-btn {
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  padding: 1rem 1.5rem;
+}
+
+.toggle-btn img {
+  margin-left: -10px;
+  background-color: #ccc;
+  width: 40px;
+  height: 40px;
+  background: #3c64ef;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
+.sidebar-logo {
+  margin: auto 0;
+}
+
+.sidebar-logo a {
+  color: black;
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+  display: none;
+}
+
+.sidebar-nav {
+  padding: 2rem 0;
+  flex: 1 1 auto;
+}
+
+.generalMenu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  padding-left: 8px;
+  list-style: none;
+}
+
+.subMenuSidebar {
+  width: 50px;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+}
+
+.subMenuSidebar.primary {
+  background: #d6dffc;
+}
+
+.subMenuSidebar.secondary {
+  background: white;
+}
+
+.baseSubMenu {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+.textsidebar {
+  color: #3c64ef;
+}
+
+.textsidebar.primary {
+  color: #3c64ef !important;
+  font-weight: 700 !important;
+}
+
+.textsidebar.secondary {
+  color: #3c64ef !important;
+}
+
+.divider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 48px;
+  border: 1px #3c64ef solid;
+}
+
+#sidebar.expand .subMenuSidebar {
+  width: 240px;
+}
+
+#sidebar:not(.expand) .subMenuSidebar {
+  width: 50px;
+}
+
+#sidebar.expand .divider {
+  width: 240px;
+}
+
+#sidebar:not(.expand) .divider {
+  width: 48px;
+}
+
+#sidebar:not(.expand) .sidebar-item .baseSubMenu div.sidebar-link {
+  display: none;
+}
+
+#sidebar.expand .sidebar-item .baseSubMenu div.sidebar-link {
+  display: inline;
+  width: 207px;
+}
