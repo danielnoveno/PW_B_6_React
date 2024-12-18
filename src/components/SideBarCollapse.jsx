@@ -41,7 +41,6 @@ const SidebarCollapse = ({ userData }) => {
     }
   };
 
-
   return (
     <div className="wrapper">
       <aside id="sidebar" className={isExpanded ? "expand" : ""}>

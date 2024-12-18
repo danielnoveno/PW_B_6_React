@@ -40,8 +40,7 @@ const DashboardAdmin = () => {
     },
     {
       id: 3,
-      image:
-        "https://m.media-amazon.com/images/I/61ZewDE3beL.jpg",
+      image: "https://m.media-amazon.com/images/I/61ZewDE3beL.jpg",
       author: "George Orwell",
       title: "1984",
       year: "1949",
@@ -125,14 +124,16 @@ const DashboardAdmin = () => {
   ];
 
   const [userCount, setUserCount] = useState(0);
-  const [users, setUsers] = useState([]); 
+  const [users, setUsers] = useState([]);
   const [books, setBooks] = useState([]);
 
   // Panggil API untuk mendapatkan jumlah pengguna
   useEffect(() => {
     const fetchUserCount = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/user/count");
+        const response = await axios.get(
+          "https://gym5api-production.up.railway.app/api/user/count"
+        );
         setUserCount(response.data.total_users); // Simpan jumlah pengguna
       } catch (error) {
         console.error("Gagal mengambil jumlah pengguna:", error);
@@ -142,11 +143,14 @@ const DashboardAdmin = () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8000/api/user", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://gym5api-production.up.railway.app/api/user",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const fetchedUsers = Array.isArray(response.data)
           ? response.data
           : response.data.data || [];
@@ -156,11 +160,13 @@ const DashboardAdmin = () => {
         console.error("Error fetching users:", error);
       }
     };
-    
+
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/buku/admin");
-        setBooks(response.data); 
+        const response = await axios.get(
+          "http://localhost:8000/api/buku/admin"
+        );
+        setBooks(response.data);
       } catch (error) {
         console.error("Gagal mengambil data buku:", error);
       }
@@ -176,135 +182,135 @@ const DashboardAdmin = () => {
       {/* Section Cards */}
       <div style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
         <div style={{ flex: 1 }}>
-        <Row className="align-items-center">
-          <div
-            style={{
-              display: "flex",
-              gap: "20px", // Jarak antar card
-              justifyContent: "space-between", // Distribusi card dalam kontainer
-              flexWrap: "wrap", // Wrap ke bawah jika tidak cukup ruang
-              whiteSpace: "normal", // Mencegah "nowrap" agar lebih fleksibel
-            }}
-          >
-            {/* Card 1 */}
+          <Row className="align-items-center">
             <div
-              className="card"
               style={{
-                width: "300px",
-                height: "130px",
-                flex: "1 1 300px", // Basis 300px, bisa grow/shrink
-                maxWidth: "300px",
+                display: "flex",
+                gap: "20px", // Jarak antar card
+                justifyContent: "space-between", // Distribusi card dalam kontainer
+                flexWrap: "wrap", // Wrap ke bawah jika tidak cukup ruang
+                whiteSpace: "normal", // Mencegah "nowrap" agar lebih fleksibel
               }}
             >
-              <div className="card-body">
-                <Row className="align-items-center">
-                  <Col xs="auto">
-                    <img
-                      src={ManyUser}
-                      width="80"
-                      height="80"
-                      alt="Icon Pengguna"
-                      className="rounded-circle"
-                    />
-                  </Col>
-                  <Col>
-                    <h1 className="card-title mb-0">{userCount}</h1>
-                    <p className="card-text">Pengguna</p>
-                  </Col>
-                </Row>
+              {/* Card 1 */}
+              <div
+                className="card"
+                style={{
+                  width: "300px",
+                  height: "130px",
+                  flex: "1 1 300px", // Basis 300px, bisa grow/shrink
+                  maxWidth: "300px",
+                }}
+              >
+                <div className="card-body">
+                  <Row className="align-items-center">
+                    <Col xs="auto">
+                      <img
+                        src={ManyUser}
+                        width="80"
+                        height="80"
+                        alt="Icon Pengguna"
+                        className="rounded-circle"
+                      />
+                    </Col>
+                    <Col>
+                      <h1 className="card-title mb-0">{userCount}</h1>
+                      <p className="card-text">Pengguna</p>
+                    </Col>
+                  </Row>
+                </div>
               </div>
-            </div>
 
-            {/* Card 2 */}
-            <div
-              className="card"
-              style={{
-                width: "300px",
-                height: "130px",
-                flex: "1 1 300px", // Basis 300px, bisa grow/shrink
-                maxWidth: "300px",
-              }}
-            >
-              <div className="card-body">
-                <Row className="align-items-center">
-                  <Col xs="auto">
-                    <img
-                      src={bookRent}
-                      width="80"
-                      height="80"
-                      alt="Icon Buku Terpinjam"
-                      className="rounded-circle"
-                    />
-                  </Col>
-                  <Col>
-                    <h1 className="card-title mb-0">710</h1>
-                    <p className="card-text">Buku Terpinjam</p>
-                  </Col>
-                </Row>
+              {/* Card 2 */}
+              <div
+                className="card"
+                style={{
+                  width: "300px",
+                  height: "130px",
+                  flex: "1 1 300px", // Basis 300px, bisa grow/shrink
+                  maxWidth: "300px",
+                }}
+              >
+                <div className="card-body">
+                  <Row className="align-items-center">
+                    <Col xs="auto">
+                      <img
+                        src={bookRent}
+                        width="80"
+                        height="80"
+                        alt="Icon Buku Terpinjam"
+                        className="rounded-circle"
+                      />
+                    </Col>
+                    <Col>
+                      <h1 className="card-title mb-0">710</h1>
+                      <p className="card-text">Buku Terpinjam</p>
+                    </Col>
+                  </Row>
+                </div>
               </div>
-            </div>
 
-            {/* Card 3 */}
-            <div
-              className="card"
-              style={{
-                width: "300px",
-                height: "130px",
-                flex: "1 1 300px",
-                maxWidth: "300px",
-              }}
-            >
-              <div className="card-body">
-                <Row className="align-items-center">
-                  <Col xs="auto">
-                    <img
-                      src={bookDownload}
-                      width="80"
-                      height="80"
-                      alt="Icon Buku Terunduh"
-                      className="rounded-circle"
-                    />
-                  </Col>
-                  <Col>
-                    <h1 className="card-title mb-0">970</h1>
-                    <p className="card-text">Buku Terunduh</p>
-                  </Col>
-                </Row>
+              {/* Card 3 */}
+              <div
+                className="card"
+                style={{
+                  width: "300px",
+                  height: "130px",
+                  flex: "1 1 300px",
+                  maxWidth: "300px",
+                }}
+              >
+                <div className="card-body">
+                  <Row className="align-items-center">
+                    <Col xs="auto">
+                      <img
+                        src={bookDownload}
+                        width="80"
+                        height="80"
+                        alt="Icon Buku Terunduh"
+                        className="rounded-circle"
+                      />
+                    </Col>
+                    <Col>
+                      <h1 className="card-title mb-0">970</h1>
+                      <p className="card-text">Buku Terunduh</p>
+                    </Col>
+                  </Row>
+                </div>
               </div>
-            </div>
 
-            {/* Card 4 */}
-            <div
-              className="card"
-              style={{
-                width: "300px",
-                height: "130px",
-                flex: "1 1 300px",
-                maxWidth: "300px",
-              }}
-            >
-              <div className="card-body">
-                <Row className="align-items-center">
-                  <Col xs="auto">
-                    <img
-                      src={bookUpload}
-                      width="80"
-                      height="80"
-                      alt="Icon Buku Terunggah"
-                      className="rounded-circle"
-                    />
-                  </Col>
-                  <Col>
-                    <h1 className="card-title mb-0">5500</h1>
-                    <p className="card-text">Buku Terunggah</p>
-                  </Col>
-                </Row>
+              {/* Card 4 */}
+              <div
+                className="card"
+                style={{
+                  width: "300px",
+                  height: "130px",
+                  flex: "1 1 300px",
+                  maxWidth: "300px",
+                }}
+              >
+                <div className="card-body">
+                  <Row className="align-items-center">
+                    <Col xs="auto">
+                      <img
+                        src={bookUpload}
+                        width="80"
+                        height="80"
+                        alt="Icon Buku Terunggah"
+                        className="rounded-circle"
+                      />
+                    </Col>
+                    <Col>
+                      <h1 className="card-title mb-0">5500</h1>
+                      <p className="card-text">Buku Terunggah</p>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </div>
-          </div>
-        </Row>
+          </Row>
           {/* Section Tabel */}
-          <div style={{ marginTop: "40px", width:"100%", maxWidth:"1380px" }}>
+          <div style={{ marginTop: "40px", width: "100%", maxWidth: "1380px" }}>
             <h4
               style={{
                 marginTop: "20px",

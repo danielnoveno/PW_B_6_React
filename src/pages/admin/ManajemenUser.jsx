@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ManageUser = () => {
-  const [users, setUsers] = useState([]); 
+  const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 10;
 
@@ -21,11 +21,14 @@ const ManageUser = () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8000/api/user", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://gym5api-production.up.railway.app//api/user",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const fetchedUsers = Array.isArray(response.data)
           ? response.data
           : response.data.data || [];
@@ -36,7 +39,7 @@ const ManageUser = () => {
       }
     };
     fetchUsers();
-  }, []);  
+  }, []);
 
   const updateUser = async (updatedUser) => {
     try {
@@ -53,7 +56,6 @@ const ManageUser = () => {
       console.error("Error updating user:", error);
     }
   };
-  
 
   const handleShowModal = (user) => {
     setCurrentUser(user);
@@ -71,12 +73,12 @@ const ManageUser = () => {
   const handleSaveChanges = async () => {
     try {
       await updateUser(tempUser); // Kirim data ke API
-  
+
       // Update state local
       setUsers((prevUsers) =>
         prevUsers.map((user) => (user.id === currentUser.id ? tempUser : user))
       );
-  
+
       setShowModal(false); // Tutup modal
       toast.success("Data pengguna berhasil diperbarui!", {
         position: "top-right",
@@ -100,7 +102,6 @@ const ManageUser = () => {
       });
     }
   };
-  
 
   const handleCheckboxChange = (id) => {
     setSelectedUsers((prev) =>
@@ -109,7 +110,9 @@ const ManageUser = () => {
   };
 
   const exportToExcel = () => {
-    const selectedData = users.filter((user) => selectedUsers.includes(user.id));
+    const selectedData = users.filter((user) =>
+      selectedUsers.includes(user.id)
+    );
     const worksheet = XLSX.utils.json_to_sheet(selectedData);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Selected Users");
@@ -125,68 +128,72 @@ const ManageUser = () => {
     <Container fluid className="px-0">
       <div style={{ marginTop: "20px" }}>
         <div className="border rounded p-2" style={{ backgroundColor: "#fff" }}>
-        <Table
-          bordered
-          hover
-          responsive
-          style={{ borderColor: "#ffffff", backgroundColor: "#f8f9fa" }}
-        >
-          <thead>
-            <tr>
-              <th style={{ textAlign: "center" }}>
-                <input
-                  type="checkbox"
-                  onChange={(e) => {
-                    setSelectedUsers(
-                      e.target.checked ? users.map((user) => user.id) : []
-                    );
-                  }}
-                  checked={selectedUsers.length === users.length}
-                />
-              </th>
-              <th style={{ textAlign: "center" }}>ID PENGGUNA</th>
-              <th style={{ textAlign: "center" }}>NAMA USER</th>
-              <th style={{ textAlign: "center" }}>EMAIL</th>
-              <th style={{ textAlign: "center" }}>TERPINJAM</th>
-              <th style={{ textAlign: "center" }}>TERUNDUH</th>
-              <th style={{ textAlign: "center" }}></th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentRows.map((user, index) => (
-              <tr key={index}>
-                <td style={{ textAlign: "center" }}>
+          <Table
+            bordered
+            hover
+            responsive
+            style={{ borderColor: "#ffffff", backgroundColor: "#f8f9fa" }}
+          >
+            <thead>
+              <tr>
+                <th style={{ textAlign: "center" }}>
                   <input
                     type="checkbox"
-                    checked={selectedUsers.includes(user.id)}
-                    onChange={() => handleCheckboxChange(user.id)}
+                    onChange={(e) => {
+                      setSelectedUsers(
+                        e.target.checked ? users.map((user) => user.id) : []
+                      );
+                    }}
+                    checked={selectedUsers.length === users.length}
                   />
-                </td>
-                <td style={{ textAlign: "center", color: "#007bff" }}>{user.id}</td>
-                <td style={{ textAlign: "center", color: "#007bff" }}>
-                  {`${user.nama_depan || ""} ${user.nama_belakang || ""}`}
-                </td>
-                <td style={{ textAlign: "center", color: "#007bff" }}>{user.email}</td>
-                <td style={{ textAlign: "center", color: "#007bff" }}>
-                  {user.borrowed || 0}
-                </td>
-                <td style={{ textAlign: "center", color: "#007bff" }}>
-                  {user.downloaded || 0}
-                </td>
-                <td style={{ textAlign: "center" }}>
-                  <img
-                    src={yellowPencil}
-                    width="30"
-                    height="30"
-                    alt="Edit"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleShowModal(user)}
-                  />
-                </td>
+                </th>
+                <th style={{ textAlign: "center" }}>ID PENGGUNA</th>
+                <th style={{ textAlign: "center" }}>NAMA USER</th>
+                <th style={{ textAlign: "center" }}>EMAIL</th>
+                <th style={{ textAlign: "center" }}>TERPINJAM</th>
+                <th style={{ textAlign: "center" }}>TERUNDUH</th>
+                <th style={{ textAlign: "center" }}></th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {currentRows.map((user, index) => (
+                <tr key={index}>
+                  <td style={{ textAlign: "center" }}>
+                    <input
+                      type="checkbox"
+                      checked={selectedUsers.includes(user.id)}
+                      onChange={() => handleCheckboxChange(user.id)}
+                    />
+                  </td>
+                  <td style={{ textAlign: "center", color: "#007bff" }}>
+                    {user.id}
+                  </td>
+                  <td style={{ textAlign: "center", color: "#007bff" }}>
+                    {`${user.nama_depan || ""} ${user.nama_belakang || ""}`}
+                  </td>
+                  <td style={{ textAlign: "center", color: "#007bff" }}>
+                    {user.email}
+                  </td>
+                  <td style={{ textAlign: "center", color: "#007bff" }}>
+                    {user.borrowed || 0}
+                  </td>
+                  <td style={{ textAlign: "center", color: "#007bff" }}>
+                    {user.downloaded || 0}
+                  </td>
+                  <td style={{ textAlign: "center" }}>
+                    <img
+                      src={yellowPencil}
+                      width="30"
+                      height="30"
+                      alt="Edit"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleShowModal(user)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
           <div
             style={{
               display: "flex",
@@ -225,54 +232,54 @@ const ManageUser = () => {
       </div>
 
       <Modal show={showModal} onHide={handleCloseModal} size="lg" centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Detail Pengguna #{currentUser.id}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-          {/* Input Nama Depan */}
-          <Form.Group>
-            <Form.Label>Nama Depan</Form.Label>
-            <Form.Control
-              type="text"
-              name="nama_depan"
-              value={tempUser.nama_depan || ""}
-              onChange={handleInputChange}
-            />
-          </Form.Group>
+        <Modal.Header closeButton>
+          <Modal.Title>Detail Pengguna #{currentUser.id}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            {/* Input Nama Depan */}
+            <Form.Group>
+              <Form.Label>Nama Depan</Form.Label>
+              <Form.Control
+                type="text"
+                name="nama_depan"
+                value={tempUser.nama_depan || ""}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
 
-          {/* Input Nama Belakang */}
-          <Form.Group>
-            <Form.Label>Nama Belakang</Form.Label>
-            <Form.Control
-              type="text"
-              name="nama_belakang"
-              value={tempUser.nama_belakang || ""}
-              onChange={handleInputChange}
-            />
-          </Form.Group>
+            {/* Input Nama Belakang */}
+            <Form.Group>
+              <Form.Label>Nama Belakang</Form.Label>
+              <Form.Control
+                type="text"
+                name="nama_belakang"
+                value={tempUser.nama_belakang || ""}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
 
-          {/* Input Email */}
-          <Form.Group>
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={tempUser.email || ""}
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleCloseModal}>
-          Batal
-        </Button>
-        <Button variant="primary" onClick={handleSaveChanges}>
-          Simpan Perubahan
-        </Button>
-      </Modal.Footer>
-    </Modal>
+            {/* Input Email */}
+            <Form.Group>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={tempUser.email || ""}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Batal
+          </Button>
+          <Button variant="primary" onClick={handleSaveChanges}>
+            Simpan Perubahan
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
