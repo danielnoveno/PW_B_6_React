@@ -22,6 +22,14 @@ const AdminProfile = () => {
     minute: "2-digit",
   });
 
+  const userData1 = {
+    nama: "Admin",
+    email: "admin@example.com",
+    whatsapp: "+6281234567891",
+    profilePic:
+      "https://i.pinimg.com/736x/48/9a/84/489a8463d05bae90504e1f33b224c407.jpg",
+  };
+
   const styles = {
     pageContainer: {
       padding: "24px",
@@ -168,11 +176,11 @@ const AdminProfile = () => {
 
           <div style={styles.profileRow}>
             <span style={styles.label}>Nama</span>
-            <span>{userData?.nama}</span>
+            <span>{userData1?.nama}</span>
           </div>
           <div style={styles.profileRow}>
             <span style={styles.label}>Email</span>
-            <span>{userData?.email}</span>
+            <span>{userData1?.email}</span>
           </div>
           <div style={styles.profileRow}>
             <span style={styles.label}>Password</span>

@@ -164,7 +164,7 @@ const DashboardAdmin = () => {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/buku/admin"
+          "https://gym5api-production.up.railway.app/api/buku/admin"
         );
         setBooks(response.data);
       } catch (error) {
