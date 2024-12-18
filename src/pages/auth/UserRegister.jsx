@@ -333,33 +333,33 @@ const UserRegister = () => {
           </div>
 
           <div style={styles.formGroup}>
-          <label htmlFor="sandi" style={styles.label}>
-            Password
-          </label>
-          <div style={styles.inputWrapper}>
-            <Lock size={18} style={styles.icon} />
-            <input
-              type={showPassword ? "text" : "password"} // Toggle input type
-              id="sandi"
-              name="sandi"
-              placeholder="Password"
-              value={formData.sandi}
-              onChange={handleInputChange}
-              style={styles.input}
-              required
-            />
-            <span
-              onClick={togglePasswordVisibility}
-              style={{
-                position: 'absolute',
-                right: '12px',
-                cursor: 'pointer',
-                color: '#666',
-              }}
-            >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-            </span>
-          </div>
+            <label htmlFor="sandi" style={styles.label}>
+              Password
+            </label>
+            <div style={styles.inputWrapper}>
+              <Lock size={18} style={styles.icon} />
+              <input
+                type={showPassword ? "text" : "password"} // Toggle input type
+                id="sandi"
+                name="sandi"
+                placeholder="Password"
+                value={formData.sandi}
+                onChange={handleInputChange}
+                style={styles.input}
+                required
+              />
+              <span
+                onClick={togglePasswordVisibility}
+                style={{
+                  position: "absolute",
+                  right: "12px",
+                  cursor: "pointer",
+                  color: "#666",
+                }}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </span>
+            </div>
           </div>
 
           <button type="submit" style={styles.button} disabled={loading}>
@@ -395,8 +395,10 @@ const UserRegister = () => {
             Digi<span style={{ color: "#4361ee" }}>Library</span>
           </h2>
           <p style={{ marginBottom: "24px", lineHeight: "1.6" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Temukan dunia pengetahuan tanpa batas di DigiLibrary. Dengan koleksi
+            buku digital dari berbagai genre, kami hadir untuk mendukung
+            semangat belajar dan membaca Anda. Jelajahi beragam karya literasi,
+            ilmu pengetahuan, dan hiburan hanya dalam satu genggaman.
           </p>
         </div>
       </div>

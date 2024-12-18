@@ -285,33 +285,33 @@ const UserLoginPage = () => {
           </div>
 
           <div style={styles.formGroup}>
-          <label htmlFor="sandi" style={styles.label}>
-            Password
-          </label>
-          <div style={styles.inputWrapper}>
-            <Lock size={18} style={styles.icon} />
-            <input
-              type={showPassword ? "text" : "password"} // Toggle input type
-              id="sandi"
-              name="sandi"
-              placeholder="Password"
-              value={formData.sandi}
-              onChange={handleInputChange}
-              style={styles.input}
-              required
-            />
-            <span
-              onClick={togglePasswordVisibility}
-              style={{
-                position: 'absolute',
-                right: '12px',
-                cursor: 'pointer',
-                color: '#666',
-              }}
-            >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-            </span>
-          </div>
+            <label htmlFor="sandi" style={styles.label}>
+              Password
+            </label>
+            <div style={styles.inputWrapper}>
+              <Lock size={18} style={styles.icon} />
+              <input
+                type={showPassword ? "text" : "password"} // Toggle input type
+                id="sandi"
+                name="sandi"
+                placeholder="Password"
+                value={formData.sandi}
+                onChange={handleInputChange}
+                style={styles.input}
+                required
+              />
+              <span
+                onClick={togglePasswordVisibility}
+                style={{
+                  position: "absolute",
+                  right: "12px",
+                  cursor: "pointer",
+                  color: "#666",
+                }}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </span>
+            </div>
             <Link to="/forgot-password" style={styles.forgotPassword}>
               Lupa Password?
             </Link>
@@ -363,10 +363,12 @@ const UserLoginPage = () => {
             Digi<span style={{ color: "#4361ee" }}>Library</span>
           </h2>
           <p style={{ marginBottom: "24px", lineHeight: "1.6" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet.
+            Selamat datang di DigiLibrary, perpustakaan digital modern yang
+            menyediakan koleksi buku elektronik dari berbagai kategori. Dengan
+            akses cepat dan mudah, kami menghadirkan bacaan berkualitas untuk
+            semua kalangan, kapan saja dan di mana saja. Temukan buku favorit
+            Anda, tingkatkan wawasan, dan nikmati pengalaman membaca yang lebih
+            praktis dan inovatif bersama DigiLibrary.
           </p>
           <div style={styles.socialIcons}>
             <a href="#" style={styles.socialIconButton}>
