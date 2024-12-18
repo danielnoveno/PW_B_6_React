@@ -1,6 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Container, Card, Row, Col, Image, Spinner, Alert } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Container,
+  Card,
+  Row,
+  Col,
+  Image,
+  Spinner,
+  Alert,
+} from "react-bootstrap";
 import { getAdminProfile } from "../../api/apiUser";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -111,33 +119,33 @@ const AdminProfile = () => {
     const fetchAdminProfile = async () => {
       try {
         setLoading(true);
-        
+
         // Verify user and token exist before making the request
-        const token = localStorage.getItem('token');
-        const storedUser = localStorage.getItem('user');
-        
-        console.log('Token exists:', !!token);
-        console.log('Stored user exists:', !!storedUser);
+        const token = localStorage.getItem("token");
+        const storedUser = localStorage.getItem("user");
+
+        console.log("Token exists:", !!token);
+        console.log("Stored user exists:", !!storedUser);
 
         if (!token || !storedUser) {
-          throw new Error('No authentication token or user found');
+          throw new Error("No authentication token or user found");
         }
 
         const profile = await getAdminProfile();
-        console.log('Profile fetch successful:', profile);
-        
+        console.log("Profile fetch successful:", profile);
+
         setUserData(profile);
         setLoading(false);
       } catch (err) {
-        console.error('Profile fetch error details:', err);
+        console.error("Profile fetch error details:", err);
 
         // More granular error handling
         if (err.status === 401 || err.status === 403) {
-          console.log('Unauthorized - logging out');
+          console.log("Unauthorized - logging out");
           logout();
-          navigate('/');
+          navigate("/");
         } else {
-          setError(err.message || 'Failed to fetch profile');
+          setError(err.message || "Failed to fetch profile");
           setLoading(false);
         }
       }
@@ -168,7 +176,7 @@ const AdminProfile = () => {
           </div>
           <div style={styles.profileRow}>
             <span style={styles.label}>Password</span>
-            <span>********</span>
+            <span></span>
           </div>
         </div>
       </div>
